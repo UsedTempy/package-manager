@@ -9,16 +9,12 @@ def init_cmd():
             "packagesPath": "src/packages",
             "target": "ReplicatedStorage"
         })
-        print("[rbxcontainer] created rbxcontainer.json")
-    else:
-        print("[rbxcontainer] rbxcontainer.json already exists")
 
     # ensure src folder exists
     SRC_DIR.mkdir(exist_ok=True)
 
     # ensure packages dir inside src
     PKG_DIR.mkdir(exist_ok=True)
-    print("[rbxcontainer] ensured src/packages/")
 
     # if default.project.json exists → wire packages
     if ROJO.exists():
@@ -33,6 +29,3 @@ def init_cmd():
         if "Packages" not in repl:
             repl["Packages"] = {"$path": "src/packages"}
             save_json(ROJO, project)
-            print("[rbxcontainer] wired Rojo: src/packages -> ReplicatedStorage/Packages")
-    else:
-        print("[rbxcontainer] no default.project.json found (skipping Rojo wiring)")
